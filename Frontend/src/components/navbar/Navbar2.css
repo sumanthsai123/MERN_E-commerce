@@ -1,0 +1,271 @@
+       *{
+            padding: 0px;
+            margin: 0px;
+            box-sizing: border-box;
+        }
+
+        header{
+            z-index: 200;
+            /* position: fixed;
+            width: 100vw;
+            height: 60px;
+            flex-direction: row;
+            justify-content: space-between;
+            background: white;
+            box-shadow: 0px 0px 25px #00000020;
+            padding: 0px 30px 0px 30px; */
+            /* box-shadow: 0px 0px 25px #ffffff10; */
+            background: white;
+            box-shadow: 0px 0px 25px #00000020;
+            width: 100vw;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            border: none;
+            height: 60px;
+            align-items: center;
+            background-color:whitw;
+            position: fixed; 
+            top: 0;
+        }
+        .logo img{
+            
+        }
+
+        .nav-logo{
+            height: 40px;
+        }
+
+        .links h5{
+            margin: 10px;
+        }
+        .search-bar{
+            width: 50%;
+            
+            max-width: 400px;
+
+            
+        }
+        .search-bar input{
+            width: 100%;
+            font-size: 14px;
+            border-radius: 10px;
+            border-top-right-radius: 0px;
+            border-bottom-right-radius: 0px;
+            border :solid rgb(115, 115, 115);
+            height: 35px;
+            padding-left: 15px;
+            font-weight: bold;
+        }
+        .search-button{
+            width: 40px;
+            background: black;
+            color: white;
+            border: solid black;
+            border-top-right-radius: 10px;
+            border-bottom-right-radius: 10px;
+        }
+
+        
+
+        .register{
+            display: flex;
+            align-items:center;
+            justify-content: center;
+            height: 40px;
+            width: 40px;
+            border-radius: 100%;
+            background: #00000010;
+        }
+
+        .register:active{
+            background: #00000020;
+        }
+       
+       #numbers-div{
+            margin: 50px;
+        }
+        .bt{
+            margin: 150px;
+        }
+        .dark{
+            width: 100vw;
+            height: 100vh;
+            background: #00000080;
+            position: fixed;
+            top: 0;
+            left: -920px;
+            visibility: hidden;
+            /* transition: all ; */
+        }
+        .side-bar{
+            width: 300px;
+            height: 100vh;
+            position: absolute;
+            background: white;
+            top: 0px;
+            left: -300px;
+            bottom: 0px;
+            transition: all 0.5s;
+            z-index: 200;
+        }
+        .menu{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            
+        }
+        .righ{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .righ a{
+            color: black;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 0px 8px;
+        }
+        .righ a:hover{
+           text-decoration: underline; 
+        }
+
+        .login-button, .logout-button{
+            background-color: white;
+            font-weight: bold;
+            border-radius: 3px;
+            width: 75px;
+            height: 35px;
+            margin-right: 7px;
+
+        }
+        .logout-button{
+           border: solid 2px rgb(206, 0, 0);
+           color: rgb(206, 0, 0);
+        }
+        .cart-button{
+            font-size: 14px;
+            background-color: black;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            width: 75px;
+            height: 35px;
+            margin-right: 15px;
+        }
+
+        .cart{
+            position: relative;
+        }
+        .cartCount{
+            position: absolute;
+            color: white;
+            background: black;
+            width: 23px;
+            height: 24px;
+            border-radius: 50%;
+            /* padding: 5px; */
+            top: -10px;
+            right: 3px;
+            text-align: center;
+            /* padding-bottom: 10px; */
+            border: 2px solid white;
+            justify-content: center;
+        }
+        .cartCount p{
+            font-size: 13px;
+            font-weight: bold;
+        }
+        .menu-items{
+            text-align: center;
+            padding-top: 15px;
+        }
+        .menu-items a{
+
+            display: block;
+            text-decoration: none;
+            color: rgb(59, 59, 59);
+            font-weight: bold;
+            padding: 10px 0px 0px 0px;
+            font-size: 20px;
+            border-bottom: solid 2px #00000010;
+        }
+        .menu-items a:hover{
+            background-color: #00000010;
+        }
+        #check:checked ~ .side-bar{
+            transform: translateX(300px);
+        }
+        #check:checked ~ .dark{
+            transform: translateX(920px);
+        }
+        .close-icon{
+            position: relative;
+            top: 16px;
+            left: 11px;
+            cursor: pointer;
+            /* font-weight: bold; */
+            font-size: 25px;
+            width: 25px;
+            text-align: center;
+            border-radius: 100%;
+            color:  rgb(63, 63, 63);
+        }
+        .close-icon:active,.ham-menu:active{
+            opacity: 0.7;
+        }
+        .ham-menu{
+            font-size: 30px;
+            display: none;
+            cursor: pointer;
+            margin-right: 10px;
+            margin-top: 3px;
+            margin-left: 10px;
+        }
+        
+
+        .category{
+            z-index: 100;
+            box-shadow: 0px 0px 25px #00000030;
+            background: rgb(5, 5, 5);
+            width: 100vw;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+            border: none;
+            height: 25px;
+            align-items: center;
+            background-color:whitw;
+            position: fixed; 
+            top: 60px;
+            padding-left: 100px;
+            padding-right: 100px;
+        }
+        .category a{
+            color: white;
+        }
+      
+        @media screen and (max-width: 850px){
+            .ham-menu{
+                display: block;
+            }
+            .links h5,.search-button, .search-bar, .search-bar input, .category {
+                display: none;
+            }
+            .dark {
+                visibility: visible;
+            }
+            .login-button, .logout-button, .cart-button{
+                width: 60px;
+                height: 30px;
+            }
+            .cart-button{
+                margin-right: 20px;
+            }
+            .cartCount{
+                right: 7px;
+            }
+            
+        }
