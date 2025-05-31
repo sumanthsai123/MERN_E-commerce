@@ -3,11 +3,12 @@ const express = require('express');
 const app= express();
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
 const multer = require('multer');
 const path = require('path');
 const cors = require('cors');
 const { error } = require('console');
-// const { updateMany } = require('../../../OneDrive/Desktop/MERN/Backend/models/Product');
+
 
 app.use (express.json());
 app.use(cors());
@@ -138,6 +139,10 @@ const Users = mongoose.model('Users',{
     cartData:{
         type:Object,
     },
+      role: {            
+        type: String,
+        default: 'user', /////////////////// 'user' or 'admin'
+    },
     date:{
         type:Date,
         default:Date.now,
@@ -159,6 +164,7 @@ app.post('/signup',async (req,res)=>{
         name:req.body.username,
         email:req.body.email,
         password:req.body.password,
+        role: req.body.role || 'user', ///////////// <-- user role
         cartData:cart,
     })
 
@@ -166,12 +172,13 @@ app.post('/signup',async (req,res)=>{
 
     const data = {
         user:{
-            id:user.id
+            id:user.id,
+            role: user.role, ////////// <-- add this line
         }
     }
 
     const token = jwt.sign(data,'secret_ecom')
-    res.json({success:true,token})
+    res.json({success:true,token, role: user.role}) /////////// <-- add role in response
 })
 
 //Creating Endpoint for user login
@@ -183,11 +190,12 @@ app.post('/login',async (req,res)=>{
         if(passCompare){
             const data = {
                 user:{
-                    id:user.id
+                    id:user.id,
+                     role: user.role, /////////// <-- add this line
                 }
             }
             const token = jwt.sign(data,'secret_ecom')
-            res.json({success:true,token})
+            res.json({success:true,token, role: user.role}) /////////// <-- add role in response
         }else{
             res.json({success:false,error:'Wrong password'})
         }
@@ -236,7 +244,8 @@ app.post('/addtocart',fetchUser,async (req,res)=>{
     let userData = await Users.findOne({_id:req.user.id})
     userData.cartData[req.body.itemId] +=1
     await Users.findOneAndUpdate({_id:req.user.id},{cartData:userData.cartData})
-    res.send('Added')
+    // res.send('Added')
+    res.json({ success: true, message: 'Added' }) ////////// <-- return JSON
 })
 
 //Creating endpoint to remove product from cart
@@ -246,7 +255,9 @@ app.post('/removefromcart',fetchUser,async (req,res)=>{
     if(userData.cartData[req.body.itemId]>0)
     userData.cartData[req.body.itemId] -=1
     await Users.findOneAndUpdate({_id:req.user.id},{cartData:userData.cartData})
-    res.send('Removed')
+    // res.send('Removed')
+    res.json({ success: true, message: 'Removed' }) //////// <-- return JSON
+
 })
 
 //Creating endpoint to create cartdata
